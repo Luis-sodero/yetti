@@ -1,181 +1,764 @@
+```
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffb6d9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Para ti ❤️</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
-body{position:relative;background:linear-gradient(180deg,#ffd6e8 0%,#ffb6d9 45%,#ff8fc7 100%)}
-.cloud{position:absolute;background:rgba(255,255,255,.8);border-radius:50px;filter:blur(.5px)}
-.cloud::before,.cloud::after{content:'';position:absolute;background:rgba(255,255,255,.8);border-radius:50%}
-.cloud1{width:140px;height:45px;top:10%;animation:moveCloud 28s linear infinite}
-.cloud1::before{width:70px;height:70px;top:-35px;left:15px}
-.cloud1::after{width:55px;height:55px;top:-25px;left:70px}
-.cloud2{width:100px;height:35px;top:25%;animation:moveCloud 36s linear infinite;animation-delay:-10s}
-.cloud2::before{width:50px;height:50px;top:-25px;left:10px}
-.cloud2::after{width:40px;height:40px;top:-18px;left:50px}
-.cloud3{width:160px;height:50px;top:65%;animation:moveCloud 42s linear infinite;animation-delay:-20s}
-.cloud3::before{width:80px;height:80px;top:-40px;left:20px}
-.cloud3::after{width:60px;height:60px;top:-28px;left:85px}
-.cloud4{width:110px;height:38px;top:80%;animation:moveCloud 32s linear infinite;animation-delay:-5s}
-.cloud4::before{width:55px;height:55px;top:-28px;left:12px}
-.cloud4::after{width:42px;height:42px;top:-20px;left:55px}
-@keyframes moveCloud{from{left:-200px}to{left:110%}}
-.flower{position:absolute;font-size:40px;animation:spin 6s linear infinite,float 8s ease-in-out infinite;user-select:none;opacity:.9}
-@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-.f1{top:8%;left:6%;font-size:36px}
-.f2{top:18%;left:88%;font-size:44px}
-.f3{top:40%;left:3%;font-size:30px}
-.f4{top:55%;left:92%;font-size:38px}
-.f5{top:75%;left:10%;font-size:42px}
-.f6{top:85%;left:80%;font-size:40px}
-.f7{top:32%;left:70%;font-size:32px}
-.f8{top:63%;left:86%;font-size:36px}
-.card{position:relative;z-index:10;width:min(90%,500px);margin:0 auto;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.88);border-radius:28px;padding:45px 30px;text-align:center;box-shadow:0 18px 45px rgba(214,51,108,.18)}
-h1{color:#d6336c;font-size:2.1em;margin-bottom:18px;text-shadow:1px 1px 0 rgba(255,255,255,.6)}
-p{color:#a3336c;font-size:1.15em;line-height:1.6}
-#heartGame{cursor:pointer;user-select:none;display:inline-block;font-size:90px;margin:15px 0 10px;transition:transform .25s ease,filter .25s ease;filter:drop-shadow(0 8px 10px rgba(214,51,108,.25))}
-#heartGame:hover{filter:drop-shadow(0 8px 18px rgba(214,51,108,.45))}
-#heartGame:active{transform:scale(.92)}
-.heart-clicked{animation:heartBeat .25s ease}
-@keyframes heartBeat{0%{transform:scale(1)}50%{transform:scale(1.18)}100%{transform:scale(1)}}
-.counter{margin-top:8px;color:#d6336c;font-size:1.05em;font-weight:bold}
-#finalMessage{display:none;opacity:0;transform:scale(.7)}
-#finalMessage.visible{display:block;animation:appear .8s ease forwards}
-.final-heart{font-size:70px;display:inline-block;animation:finalPulse 1s infinite}
-@keyframes finalPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
-@keyframes appear{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
-#finalButton{margin-top:22px;padding:13px 30px;border:none;border-radius:30px;background:linear-gradient(135deg,#ff6fa5,#ff4d8d);color:white;font-size:1em;font-weight:bold;cursor:pointer;box-shadow:0 10px 20px rgba(255,77,141,.35);transition:transform .2s ease}
-#finalButton:hover{transform:scale(1.05)}
-#finalButton:disabled{opacity:.5;cursor:not-allowed}
-.falling-heart{position:fixed;top:-60px;z-index:2;pointer-events:none;animation:fall linear forwards}
-@keyframes fall{0%{transform:translateY(-60px) rotate(0);opacity:0}10%{opacity:1}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
-.explosion-heart{position:fixed;left:50%;top:50%;z-index:50;font-size:25px;pointer-events:none;animation:explode 1.6s ease-out forwards}
-@keyframes explode{0%{transform:translate(-50%,-50%) scale(.2);opacity:1}100%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.5) rotate(360deg);opacity:0}}
-#teAmo{display:block;position:fixed;z-index:100;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(55px,15vw,110px);font-weight:bold;color:#d6336c;text-shadow:0 0 10px white,0 0 25px white,0 0 45px rgba(255,255,255,.8);opacity:0;visibility:hidden;pointer-events:none}
-@keyframes teAmoAnimation{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}70%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-.hidden{display:none!important}
-@keyframes heartExplosion{0%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:1}100%{transform:scale(3);opacity:0}}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+    -webkit-touch-callout:none;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+html{
+    background:#ffb6d9;
+}
+
+body{
+    position:relative;
+    min-height:100%;
+    min-height:100dvh;
+    padding:
+        env(safe-area-inset-top)
+        env(safe-area-inset-right)
+        env(safe-area-inset-bottom)
+        env(safe-area-inset-left);
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+    background:
+        linear-gradient(
+            180deg,
+            #ffd6e8 0%,
+            #ffb6d9 50%,
+            #ff8fc7 100%
+        );
+    overscroll-behavior:none;
+    touch-action:manipulation;
+}
+
+.cloud{
+    position:absolute;
+    left:-220px;
+    z-index:1;
+    background:rgba(255,255,255,.75);
+    border-radius:50px;
+    pointer-events:none;
+    will-change:transform;
+}
+
+.cloud::before,
+.cloud::after{
+    content:"";
+    position:absolute;
+    background:rgba(255,255,255,.75);
+    border-radius:50%;
+}
+
+.cloud1{
+    width:140px;
+    height:45px;
+    top:10%;
+    animation:moveCloud 28s linear infinite;
+}
+
+.cloud1::before{
+    width:70px;
+    height:70px;
+    top:-35px;
+    left:15px;
+}
+
+.cloud1::after{
+    width:55px;
+    height:55px;
+    top:-25px;
+    left:70px;
+}
+
+.cloud2{
+    width:100px;
+    height:35px;
+    top:25%;
+    animation:moveCloud 36s linear infinite;
+    animation-delay:-10s;
+}
+
+.cloud2::before{
+    width:50px;
+    height:50px;
+    top:-25px;
+    left:10px;
+}
+
+.cloud2::after{
+    width:40px;
+    height:40px;
+    top:-18px;
+    left:50px;
+}
+
+.cloud3{
+    width:160px;
+    height:50px;
+    top:65%;
+    animation:moveCloud 42s linear infinite;
+    animation-delay:-20s;
+}
+
+.cloud3::before{
+    width:80px;
+    height:80px;
+    top:-40px;
+    left:20px;
+}
+
+.cloud3::after{
+    width:60px;
+    height:60px;
+    top:-28px;
+    left:85px;
+}
+
+.cloud4{
+    width:110px;
+    height:38px;
+    top:80%;
+    animation:moveCloud 32s linear infinite;
+    animation-delay:-5s;
+}
+
+.cloud4::before{
+    width:55px;
+    height:55px;
+    top:-28px;
+    left:12px;
+}
+
+.cloud4::after{
+    width:42px;
+    height:42px;
+    top:-20px;
+    left:55px;
+}
+
+@keyframes moveCloud{
+    from{
+        transform:translate3d(-20vw,0,0);
+    }
+    to{
+        transform:translate3d(130vw,0,0);
+    }
+}
+
+.flower{
+    position:absolute;
+    z-index:2;
+    user-select:none;
+    pointer-events:none;
+    opacity:.75;
+    will-change:transform;
+    animation:flowerFloat 8s ease-in-out infinite;
+}
+
+@keyframes flowerFloat{
+    0%,100%{
+        transform:translate3d(0,0,0) rotate(0deg);
+    }
+    50%{
+        transform:translate3d(0,-10px,0) rotate(180deg);
+    }
+}
+
+.f1{top:8%;left:5%;font-size:32px}
+.f2{top:18%;left:86%;font-size:38px}
+.f3{top:40%;left:3%;font-size:28px}
+.f4{top:55%;left:90%;font-size:34px}
+.f5{top:76%;left:8%;font-size:38px}
+.f6{top:86%;left:80%;font-size:32px}
+.f7{top:12%;left:45%;font-size:26px}
+.f8{top:68%;left:50%;font-size:28px}
+
+.card{
+    position:absolute;
+    z-index:10;
+    top:50%;
+    left:50%;
+    width:min(90%,500px);
+    max-height:calc(100dvh - 32px);
+    padding:clamp(24px,6vw,40px) clamp(18px,6vw,30px);
+    overflow:auto;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    background:rgba(255,255,255,.92);
+    border:2px solid rgba(255,182,217,.8);
+    border-radius:28px;
+    box-shadow:
+        0 15px 40px rgba(255,105,180,.35),
+        0 0 40px rgba(255,255,255,.5);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+    scrollbar-width:none;
+}
+
+.card::-webkit-scrollbar{
+    display:none;
+}
+
+h1{
+    margin-bottom:16px;
+    color:#d6336c;
+    font-size:clamp(1.5rem,7vw,2.1rem);
+    line-height:1.2;
+    text-shadow:1px 1px 0 rgba(255,255,255,.7);
+}
+
+p{
+    color:#a3336c;
+    font-size:clamp(.95rem,4.2vw,1.15rem);
+    line-height:1.55;
+}
+
+#heartGame{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:min(40vw,125px);
+    height:min(40vw,125px);
+    margin:14px auto 8px;
+    font-size:min(23vw,80px);
+    line-height:1;
+    cursor:pointer;
+    user-select:none;
+    touch-action:manipulation;
+    filter:drop-shadow(0 8px 10px rgba(214,51,108,.25));
+    transition:transform .15s ease;
+    will-change:transform,font-size;
+}
+
+#heartGame:active{
+    transform:scale(.88);
+}
+
+.heart-clicked{
+    animation:heartBeat .25s ease;
+}
+
+@keyframes heartBeat{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.18)}
+    100%{transform:scale(1)}
+}
+
+.counter{
+    margin-top:6px;
+    color:#d6336c;
+    font-size:clamp(.9rem,4vw,1.05rem);
+    font-weight:700;
+}
+
+#finalMessage{
+    display:none;
+    animation:appear .7s ease forwards;
+}
+
+.final-heart{
+    display:inline-block;
+    margin-bottom:8px;
+    font-size:clamp(52px,18vw,75px);
+    animation:finalPulse 1s infinite;
+}
+
+@keyframes finalPulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.15)}
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:scale(.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+#finalButton{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:190px;
+    min-height:50px;
+    margin-top:20px;
+    padding:14px 28px;
+    border:0;
+    border-radius:30px;
+    background:linear-gradient(135deg,#ff6fa5,#ff4d8d);
+    color:#fff;
+    font:700 1rem inherit;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(255,77,141,.4);
+    touch-action:manipulation;
+    -webkit-appearance:none;
+    appearance:none;
+}
+
+#finalButton:active{
+    transform:scale(.94);
+}
+
+.falling-heart{
+    position:fixed;
+    top:-60px;
+    z-index:5;
+    pointer-events:none;
+    animation:fall linear forwards;
+    will-change:transform,opacity;
+}
+
+@keyframes fall{
+    0%{
+        transform:translate3d(0,-60px,0) rotate(0);
+        opacity:0;
+    }
+    10%{opacity:1}
+    100%{
+        transform:translate3d(0,110vh,0) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.explosion-heart{
+    position:fixed;
+    top:50%;
+    left:50%;
+    z-index:50;
+    pointer-events:none;
+    font-size:25px;
+    animation:explode 1.5s ease-out forwards;
+    will-change:transform,opacity;
+}
+
+@keyframes explode{
+    0%{
+        transform:translate3d(-50%,-50%,0) scale(.2);
+        opacity:1;
+    }
+    100%{
+        transform:
+            translate3d(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y)),
+                0
+            )
+            scale(1.5)
+            rotate(360deg);
+        opacity:0;
+    }
+}
+
+#teAmo{
+    display:none;
+    position:fixed;
+    z-index:100;
+    top:50%;
+    left:50%;
+    width:100%;
+    padding:0 10px;
+    text-align:center;
+    white-space:nowrap;
+    transform:translate(-50%,-50%);
+    color:#d6336c;
+    font-size:clamp(48px,15vw,110px);
+    font-weight:800;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 25px #fff,
+        0 0 45px rgba(255,77,141,.8);
+    pointer-events:none;
+    animation:teAmoAnimation 1s ease forwards;
+}
+
+@keyframes teAmoAnimation{
+    0%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(.2);
+    }
+    70%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1.12);
+    }
+    100%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1);
+    }
+}
+
+@keyframes heartExplosion{
+    0%{
+        transform:scale(1);
+        opacity:1;
+    }
+    50%{
+        transform:scale(1.4);
+        opacity:1;
+    }
+    100%{
+        transform:scale(3);
+        opacity:0;
+    }
+}
+
+.hidden{
+    display:none!important;
+}
+
+@media(max-width:600px){
+    .card{
+        width:92%;
+        border-radius:24px;
+    }
+
+    .flower{
+        opacity:.55;
+    }
+}
+
+@media(max-height:700px){
+    .card{
+        padding:20px 18px;
+        max-height:calc(100dvh - 20px);
+    }
+
+    h1{
+        margin-bottom:8px;
+        font-size:1.45rem;
+    }
+
+    p{
+        font-size:.9rem;
+        line-height:1.4;
+    }
+
+    #heartGame{
+        width:85px;
+        height:85px;
+        margin:4px auto;
+        font-size:62px;
+    }
+
+    .counter{
+        font-size:.88rem;
+    }
+
+    #finalButton{
+        margin-top:14px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .cloud,
+    .flower,
+    .falling-heart,
+    .explosion-heart,
+    .final-heart,
+    #teAmo{
+        animation:none!important;
+    }
+}
 </style>
 </head>
+
 <body>
-<div class="cloud cloud1"></div><div class="cloud cloud2"></div><div class="cloud cloud3"></div><div class="cloud cloud4"></div>
-<div class="flower f1">🌸</div><div class="flower f2">🌷</div><div class="flower f3">🌺</div><div class="flower f4">🌸</div>
-<div class="flower f5">🌷</div><div class="flower f6">💮</div><div class="flower f7">🌺</div><div class="flower f8">🌸</div>
 
-<div class="card" id="card">
-  <div id="game">
-    <h1>Un pequeño juego ❤️</h1>
-    <p>Haz clic en el corazón<br>y mira qué pasa...</p>
-    <div id="heartGame" onclick="clickHeart()" title="Haz clic">❤️</div>
-    <div class="counter">Clics: <span id="counter">0</span> / 10</div>
-  </div>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+<div class="cloud cloud4"></div>
 
-  <div id="finalMessage">
-    <div class="final-heart">💖</div>
-    <p>Me he estado pensando en lo mucho que te quiero, por eso incluso en los 0 y 1 me recuerdan a ti. Espero que podamos besarnos otra vez pronto.</p>
-    <button id="finalButton" onclick="finalExplosion()">Haz clic aquí ❤️</button>
-  </div>
+<div class="flower f1">🌸</div>
+<div class="flower f2">🌷</div>
+<div class="flower f3">🌺</div>
+<div class="flower f4">🌸</div>
+<div class="flower f5">🌷</div>
+<div class="flower f6">💮</div>
+<div class="flower f7">🌺</div>
+<div class="flower f8">🌸</div>
+
+<div class="card">
+    <div id="game">
+        <h1>Un pequeño juego ❤️</h1>
+
+        <p>
+            Toca el corazón<br>
+            y mira qué pasa...
+        </p>
+
+        <div
+            id="heartGame"
+            role="button"
+            tabindex="0"
+            aria-label="Toca el corazón"
+        >❤️</div>
+
+        <div class="counter">
+            Clics:
+            <span id="counter">0</span>
+            / 10
+        </div>
+    </div>
+
+    <div id="finalMessage">
+        <div class="final-heart">💖</div>
+
+        <p>
+            He estado pensando en lo mucho que te quiero.
+            Por eso, hasta los 0 y 1 me hacen pensar en ti.
+            Espero que podamos besarnos otra vez pronto ❤️
+        </p>
+
+        <button id="finalButton" type="button">
+            Haz clic aquí ❤️
+        </button>
+    </div>
 </div>
 
 <div id="teAmo">Te amo ❤️</div>
 
 <script>
+"use strict";
+
 let clicks = 0;
 let gameFinished = false;
-let finalTriggered = false;
 let fallingInterval = null;
 
-function clickHeart() {
-  if (gameFinished) return;
+const heartGame = document.getElementById("heartGame");
+const finalButton = document.getElementById("finalButton");
+const counter = document.getElementById("counter");
+const game = document.getElementById("game");
+const finalMessage = document.getElementById("finalMessage");
+const teAmo = document.getElementById("teAmo");
 
-  clicks++;
-  document.getElementById("counter").textContent = clicks;
-
-  const heart = document.getElementById("heartGame");
-  heart.style.fontSize = (90 + clicks * 16) + "px";
-  heart.classList.remove("heart-clicked");
-  void heart.offsetWidth;
-  heart.classList.add("heart-clicked");
-
-  if (clicks >= 10) {
-    gameFinished = true;
-    heart.style.animation = "heartExplosion .7s ease forwards";
-
-    setTimeout(() => {
-      document.getElementById("game").classList.add("hidden");
-      const finalMessage = document.getElementById("finalMessage");
-      finalMessage.style.display = "block";
-      finalMessage.classList.add("visible");
-      startFallingHearts();
-    }, 650);
-  }
+function vibrate(pattern){
+    if(
+        typeof navigator.vibrate === "function"
+    ){
+        try{
+            navigator.vibrate(pattern);
+        }catch{}
+    }
 }
 
-function startFallingHearts() {
-  if (fallingInterval) clearInterval(fallingInterval);
+function clickHeart(event){
+    if(gameFinished) return;
 
-  const emojis = ["❤️", "🩷", "🧡", "💛", "💚", "💙", "💜", "💖", "💗", "💓", "💕", "💞", "💘", "💝", "💟"];
+    if(
+        event &&
+        event.type === "click" &&
+        event.detail > 1
+    ){
+        return;
+    }
 
-  for (let i = 0; i < 45; i++) {
-    setTimeout(() => {
-      const heart = document.createElement("div");
-      heart.className = "falling-heart";
-      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (18 + Math.random() * 30) + "px";
-      heart.style.animationDuration = (4 + Math.random() * 5) + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
-    }, i * 150);
-  }
+    clicks++;
+    counter.textContent = clicks;
 
-  fallingInterval = setInterval(() => {
+    vibrate(
+        clicks >= 10
+            ? [40,50,70]
+            : 20
+    );
+
+    const size = Math.min(70 + clicks * 6,125);
+
+    heartGame.style.fontSize = `${size}px`;
+
+    heartGame.classList.remove("heart-clicked");
+    void heartGame.offsetWidth;
+    heartGame.classList.add("heart-clicked");
+
+    if(clicks >= 10){
+        gameFinished = true;
+
+        heartGame.style.animation =
+            "heartExplosion .7s ease forwards";
+
+        setTimeout(()=>{
+            game.classList.add("hidden");
+            finalMessage.style.display = "block";
+            startFallingHearts();
+        },650);
+    }
+}
+
+function startFallingHearts(){
+    const emojis = [
+        "❤️","🩷","🧡","💛","💚",
+        "💙","💜","💖","💗","💓",
+        "💕","💞","💘","💝","💟"
+    ];
+
+    for(let i=0;i<28;i++){
+        setTimeout(()=>{
+            createFallingHeart(emojis);
+        },i*140);
+    }
+
+    fallingInterval = setInterval(()=>{
+        createFallingHeart(emojis);
+    },550);
+
+    setTimeout(()=>{
+        clearInterval(fallingInterval);
+        fallingInterval = null;
+    },15000);
+}
+
+function createFallingHeart(emojis){
     const heart = document.createElement("div");
+
     heart.className = "falling-heart";
-    heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (18 + Math.random() * 30) + "px";
-    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 9000);
-  }, 500);
+    heart.textContent =
+        emojis[
+            Math.floor(Math.random()*emojis.length)
+        ];
 
-  setTimeout(() => clearInterval(fallingInterval), 15000);
+    heart.style.left = `${Math.random()*100}vw`;
+    heart.style.fontSize =
+        `${18 + Math.random()*26}px`;
+
+    heart.style.animationDuration =
+        `${4 + Math.random()*5}s`;
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
 }
 
-function finalExplosion() {
-  if (finalTriggered) return;
-  finalTriggered = true;
-  
-  const button = document.getElementById("finalButton");
-  button.disabled = true;
+function finalExplosion(){
+    if(teAmo.style.display === "block") return;
 
-  const hearts = ["❤️", "🩷", "💖", "💕", "💗", "💓", "💘", "💝", "💞", "💟"];
+    vibrate([60,50,100,50,150]);
 
-  for (let i = 0; i < 80; i++) {
-    const heart = document.createElement("div");
-    heart.className = "explosion-heart";
-    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-    const angle = Math.random() * Math.PI * 2;
-    const distance = 150 + Math.random() * 500;
-    heart.style.setProperty("--x", Math.cos(angle) * distance + "px");
-    heart.style.setProperty("--y", Math.sin(angle) * distance + "px");
-    heart.style.fontSize = (18 + Math.random() * 35) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 1700);
-  }
+    const hearts = [
+        "❤️","🩷","💖","💕","💗",
+        "💓","💘","💝","💞","💟"
+    ];
 
-  setTimeout(() => {
-    const teAmo = document.getElementById("teAmo");
-    teAmo.style.visibility = "visible";
-    teAmo.style.opacity = "1";
-    teAmo.style.animation = "teAmoAnimation .8s ease forwards";
-  }, 650);
+    const amount =
+        window.innerWidth < 600
+            ? 45
+            : 70;
+
+    const smallestScreen =
+        Math.min(
+            window.innerWidth,
+            window.innerHeight
+        );
+
+    for(let i=0;i<amount;i++){
+        const heart = document.createElement("div");
+
+        heart.className = "explosion-heart";
+        heart.textContent =
+            hearts[
+                Math.floor(Math.random()*hearts.length)
+            ];
+
+        const angle = Math.random()*Math.PI*2;
+
+        const distance =
+            90 +
+            Math.random() *
+            (smallestScreen*.65);
+
+        heart.style.setProperty(
+            "--x",
+            `${Math.cos(angle)*distance}px`
+        );
+
+        heart.style.setProperty(
+            "--y",
+            `${Math.sin(angle)*distance}px`
+        );
+
+        heart.style.fontSize =
+            `${18 + Math.random()*32}px`;
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },1600);
+    }
+
+    setTimeout(()=>{
+        teAmo.style.display = "block";
+    },600);
 }
+
+function handleHeartKey(event){
+    if(
+        event.key === "Enter" ||
+        event.key === " "
+    ){
+        event.preventDefault();
+        clickHeart(event);
+    }
+}
+
+heartGame.addEventListener(
+    "pointerup",
+    clickHeart,
+    {passive:true}
+);
+
+finalButton.addEventListener(
+    "pointerup",
+    finalExplosion,
+    {passive:true}
+);
+
+heartGame.addEventListener(
+    "keydown",
+    handleHeartKey
+);
+
+heartGame.addEventListener(
+    "contextmenu",
+    event => event.preventDefault()
+);
+
+finalButton.addEventListener(
+    "contextmenu",
+    event => event.preventDefault()
+);
 </script>
+
 </body>
 </html>
+```
