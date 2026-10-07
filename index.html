@@ -22,8 +22,8 @@ body{position:relative;background:linear-gradient(180deg,#ffd6e8 0%,#ffb6d9 45%,
 .flower{position:absolute;font-size:40px;animation:spin 6s linear infinite,float 8s ease-in-out infinite;user-select:none;opacity:.9}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-.f1{top:8%;left:6%;font-size:36px}.f2{top:18%;left:88%;font-size:44px}.f3{top:40%;left:3%;font-size:30px}.f4{top:55%;left:92%;font-size:38px}.f5{top:75%;left:10%;font-size:42px}.f6{top:85%;left:80%;font-size:34px}.f7{top:12%;left:45%;font-size:28px}.f8{top:68%;left:50%;font-size:30px}
-.card{position:relative;z-index:10;width:min(90%,500px);margin:0 auto;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.88);border-radius:28px;padding:45px 30px;text-align:center;box-shadow:0 15px 40px rgba(255,105,180,.35),0 0 40px rgba(255,255,255,.5);backdrop-filter:blur(8px);border:2px solid rgba(255,182,217,.8)}
+.f1{top:8%;left:6%;font-size:36px}.f2{top:18%;left:88%;font-size:44px}.f3{top:40%;left:3%;font-size:30px}.f4{top:55%;left:92%;font-size:38px}.f5{top:75%;left:10%;font-size:42px}.f6{top:85%;left:80%;font-size:40px}.f7{top:32%;left:70%;font-size:32px}.f8{top:63%;left:86%;font-size:36px}
+.card{position:relative;z-index:10;width:min(90%,500px);margin:0 auto;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.88);border-radius:28px;padding:45px 30px;text-align:center;box-shadow:0 18px 45px rgba(214,51,108,.18)}
 h1{color:#d6336c;font-size:2.1em;margin-bottom:18px;text-shadow:1px 1px 0 rgba(255,255,255,.6)}
 p{color:#a3336c;font-size:1.15em;line-height:1.6}
 #heartGame{cursor:pointer;user-select:none;display:inline-block;font-size:90px;margin:15px 0 10px;transition:transform .25s ease,filter .25s ease;filter:drop-shadow(0 8px 10px rgba(214,51,108,.25))}
@@ -32,17 +32,18 @@ p{color:#a3336c;font-size:1.15em;line-height:1.6}
 .heart-clicked{animation:heartBeat .25s ease}
 @keyframes heartBeat{0%{transform:scale(1)}50%{transform:scale(1.18)}100%{transform:scale(1)}}
 .counter{margin-top:8px;color:#d6336c;font-size:1.05em;font-weight:bold}
-#finalMessage{display:none;animation:appear .8s ease forwards}
+#finalMessage{display:none;opacity:0;transform:scale(.7)}
+#finalMessage.visible{display:block;animation:appear .8s ease forwards}
 .final-heart{font-size:70px;display:inline-block;animation:finalPulse 1s infinite}
 @keyframes finalPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
 @keyframes appear{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
-#finalButton{margin-top:22px;padding:13px 30px;border:none;border-radius:30px;background:linear-gradient(135deg,#ff6fa5,#ff4d8d);color:white;font-size:1em;font-weight:bold;cursor:pointer;box-shadow:0 8px 20px rgba(255,77,141,.4);transition:.2s}
+#finalButton{margin-top:22px;padding:13px 30px;border:none;border-radius:30px;background:linear-gradient(135deg,#ff6fa5,#ff4d8d);color:white;font-size:1em;font-weight:bold;cursor:pointer;box-shadow:0 10px 20px rgba(255,77,141,.35);transition:transform .2s ease}
 #finalButton:hover{transform:scale(1.05)}
 .falling-heart{position:fixed;top:-60px;z-index:2;pointer-events:none;animation:fall linear forwards}
 @keyframes fall{0%{transform:translateY(-60px) rotate(0);opacity:0}10%{opacity:1}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
 .explosion-heart{position:fixed;left:50%;top:50%;z-index:50;font-size:25px;pointer-events:none;animation:explode 1.6s ease-out forwards}
 @keyframes explode{0%{transform:translate(-50%,-50%) scale(.2);opacity:1}100%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.5) rotate(360deg);opacity:0}}
-#teAmo{display:none;position:fixed;z-index:100;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(55px,15vw,110px);font-weight:bold;color:#d6336c;text-shadow:0 0 10px white,0 0 25px white,0 0 45px rgba(255,77,141,.8);animation:teAmoAnimation 1s ease forwards;pointer-events:none}
+#teAmo{display:block;position:fixed;z-index:100;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(55px,15vw,110px);font-weight:bold;color:#d6336c;text-shadow:0 0 10px white,0 0 25px white,0 0 45px rgba(255,255,255,.8);opacity:0;visibility:hidden;pointer-events:none}
 @keyframes teAmoAnimation{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}70%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
 .hidden{display:none!important}
 @keyframes heartExplosion{0%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:1}100%{transform:scale(3);opacity:0}}
@@ -63,7 +64,7 @@ p{color:#a3336c;font-size:1.15em;line-height:1.6}
 
   <div id="finalMessage">
     <div class="final-heart">💖</div>
-    <p>Me he pensando en lo mucho que te quiero, por eso hasta en los 0 y 1 me recuerdan a ti. Espero que podamos besarnos otra vez pronto</p>
+    <p>Me he estado pensando en lo mucho que te quiero, por eso incluso en los 0 y 1 me recuerdan a ti. Espero que podamos besarnos otra vez pronto.</p>
     <button id="finalButton" onclick="finalExplosion()">Haz clic aquí ❤️</button>
   </div>
 </div>
@@ -71,72 +72,94 @@ p{color:#a3336c;font-size:1.15em;line-height:1.6}
 <div id="teAmo">Te amo ❤️</div>
 
 <script>
-let clicks=0;
-let gameFinished=false;
+let clicks = 0;
+let gameFinished = false;
+let finalTriggered = false;
+let fallingInterval = null;
 
-function clickHeart(){
-  if(gameFinished)return;
+function clickHeart() {
+  if (gameFinished) return;
+
   clicks++;
-  document.getElementById("counter").textContent=clicks;
-  const heart=document.getElementById("heartGame");
-  heart.style.fontSize=(90+clicks*16)+"px";
+  document.getElementById("counter").textContent = clicks;
+
+  const heart = document.getElementById("heartGame");
+  heart.style.fontSize = (90 + clicks * 16) + "px";
   heart.classList.remove("heart-clicked");
   void heart.offsetWidth;
   heart.classList.add("heart-clicked");
 
-  if(clicks>=10){
-    gameFinished=true;
-    heart.style.animation="heartExplosion .7s ease forwards";
-    setTimeout(()=>{
+  if (clicks >= 10) {
+    gameFinished = true;
+    heart.style.animation = "heartExplosion .7s ease forwards";
+
+    setTimeout(() => {
       document.getElementById("game").classList.add("hidden");
-      document.getElementById("finalMessage").style.display="block";
+      const finalMessage = document.getElementById("finalMessage");
+      finalMessage.style.display = "block";
+      finalMessage.classList.add("visible");
       startFallingHearts();
-    },650);
+    }, 650);
   }
 }
 
-function startFallingHearts(){
-  const emojis=["❤️","🩷","🧡","💛","💚","💙","💜","💖","💗","💓","💕","💞","💘","💝","💟"];
-  for(let i=0;i<45;i++){
-    setTimeout(()=>{
-      const heart=document.createElement("div");
-      heart.className="falling-heart";
-      heart.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-      heart.style.left=Math.random()*100+"vw";
-      heart.style.fontSize=(18+Math.random()*30)+"px";
-      heart.style.animationDuration=(4+Math.random()*5)+"s";
+function startFallingHearts() {
+  if (fallingInterval) clearInterval(fallingInterval);
+
+  const emojis = ["❤️", "🩷", "🧡", "💛", "💚", "💙", "💜", "💖", "💗", "💓", "💕", "💞", "💘", "💝", "💟"];
+
+  for (let i = 0; i < 45; i++) {
+    setTimeout(() => {
+      const heart = document.createElement("div");
+      heart.className = "falling-heart";
+      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (18 + Math.random() * 30) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 5) + "s";
       document.body.appendChild(heart);
-      setTimeout(()=>heart.remove(),10000);
-    },i*150);
+      setTimeout(() => heart.remove(), 10000);
+    }, i * 150);
   }
-  const fallingInterval=setInterval(()=>{
-    const heart=document.createElement("div");
-    heart.className="falling-heart";
-    heart.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(18+Math.random()*30)+"px";
-    heart.style.animationDuration=(4+Math.random()*4)+"s";
+
+  fallingInterval = setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "falling-heart";
+    heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (18 + Math.random() * 30) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
     document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),9000);
-  },500);
-  setTimeout(()=>clearInterval(fallingInterval),15000);
+    setTimeout(() => heart.remove(), 9000);
+  }, 500);
+
+  setTimeout(() => clearInterval(fallingInterval), 15000);
 }
 
-function finalExplosion(){
-  const hearts=["❤️","🩷","💖","💕","💗","💓","💘","💝","💞","💟"];
-  for(let i=0;i<80;i++){
-    const heart=document.createElement("div");
-    heart.className="explosion-heart";
-    heart.textContent=hearts[Math.floor(Math.random()*hearts.length)];
-    const angle=Math.random()*Math.PI*2;
-    const distance=150+Math.random()*500;
-    heart.style.setProperty("--x",Math.cos(angle)*distance+"px");
-    heart.style.setProperty("--y",Math.sin(angle)*distance+"px");
-    heart.style.fontSize=(18+Math.random()*35)+"px";
+function finalExplosion() {
+  if (finalTriggered) return;
+  finalTriggered = true;
+
+  const hearts = ["❤️", "🩷", "💖", "💕", "💗", "💓", "💘", "💝", "💞", "💟"];
+
+  for (let i = 0; i < 80; i++) {
+    const heart = document.createElement("div");
+    heart.className = "explosion-heart";
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 150 + Math.random() * 500;
+    heart.style.setProperty("--x", Math.cos(angle) * distance + "px");
+    heart.style.setProperty("--y", Math.sin(angle) * distance + "px");
+    heart.style.fontSize = (18 + Math.random() * 35) + "px";
     document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),1700);
+    setTimeout(() => heart.remove(), 1700);
   }
-  setTimeout(()=>document.getElementById("teAmo").style.display="block",650);
+
+  setTimeout(() => {
+    const teAmo = document.getElementById("teAmo");
+    teAmo.style.visibility = "visible";
+    teAmo.style.opacity = "1";
+    teAmo.style.animation = "teAmoAnimation .8s ease forwards";
+  }, 650);
 }
 </script>
 </body>
